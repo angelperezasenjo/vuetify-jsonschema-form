@@ -61,7 +61,7 @@ exports.getExampleWrapper = (example) => {
   const wrapper = mount(ExampleForm, {
     localVue,
     vuetify,
-    scopedSlots: {
+    slots: {
       default: template
     },
     propsData: {

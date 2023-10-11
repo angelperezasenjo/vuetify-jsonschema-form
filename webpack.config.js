@@ -7,11 +7,27 @@ const base = {
     rules: [{
       test: /\.js$/,
       exclude: /(node_modules)/,
-      use: 'babel-loader'
+      use: {
+        loader: 'babel-loader'
+      }
     }, {
       test: /\.vue$/,
-      use: 'vue-loader'
-    }]
+      loader: 'vue-loader',
+      options: {
+        compilerOptions: {
+          isCustomElement: (tag) => {
+            return tag.startsWith('v-')
+          }
+        } // disables Hot Reload
+      }
+    }, {
+      test: /\.css$/,
+      use: [
+        'style-loader',
+        'css-loader'
+      ]
+    }
+    ]
   },
   plugins: [
     new VueLoaderPlugin()
