@@ -33,7 +33,7 @@ const base = {
     new VueLoaderPlugin()
   ],
   externals: {
-    vue: 'Vue'
+    vue: 'vue'
   },
   target: ['web', 'es5']
 }
