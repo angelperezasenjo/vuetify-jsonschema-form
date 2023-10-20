@@ -35,7 +35,8 @@ const base = {
   externals: {
     vue: 'vue'
   },
-  target: ['web', 'es5']
+  target: ['web', 'es5'],
+  devtool: 'source-map'
 }
 
 module.exports = [{
