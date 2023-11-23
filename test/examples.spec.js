@@ -30,6 +30,7 @@ describe('Examples used as simple test cases', () => {
         const { wrapper, modelWrapper, events } = utils.getExampleWrapper(example)
         // wait a little bit for optional asynchronous calls
         return new Promise(resolve => setTimeout(resolve, 200)).then(() => {
+          console.log('wrapper.element', wrapper.element)
           expect(wrapper.element).toMatchSnapshot()
           if (example.test) return example.test(wrapper, modelWrapper, events)
         })

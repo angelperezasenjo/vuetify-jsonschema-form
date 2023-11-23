@@ -18,6 +18,6 @@ const examples = [
   dev
 ]
 
-const defaultTemplate = '<v-jsf v-model="model" :schema="schema" :options="options" @input="logEvent(\'input\', $event)" @change="logEvent(\'change\', $event)" @input-child="logEvent(\'input-child\', $event)" @change-child="logEvent(\'change-child\', $event)" />'
+const defaultTemplate = '<v-jsf v-model="param.model" :schema="param.schema" :options="param.options" @input="param.logEvent(\'input\', $event)" @change="logEvent(\'change\', $event)" @input-child="param.logEvent(\'input-child\', $event)" @change-child="param.logEvent(\'change-child\', $event)" />'
 
 export { examples, defaultTemplate }

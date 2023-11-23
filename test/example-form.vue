@@ -4,10 +4,7 @@
     v-model="valid"
   >
     <slot
-      :model-wrapper="modelWrapper"
-      :options="options"
-      :schema="schema"
-      :log-event="logEvent"
+      v-bind="{modelWrapper, options, schema, logEvent}"
     />
   </v-form>
 </template>
@@ -20,6 +17,9 @@ export default {
     schema: { type: Object, required: true },
     options: { type: Object, required: true },
     logEvent: { type: Function, required: true }
+  },
+  setup(props) {
+    console.log('props:', props)
   },
   data: () => ({
     valid: false
