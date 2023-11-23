@@ -10,6 +10,7 @@
     "prepare": "npm run lint && npm test && npm run build && npm run doc-build",
     "postpublish": "gh-pages-multi deploy -v -s doc/dist -t latest",
     "test": "jest",
+    "clear-cache": "jest tests/unit --clearCache",
     "test-watch": "jest --watch",
     "test-update": "jest --updateSnapshot",
     "doc-build": "(cd doc && TARGET=https://amplia-iiot/vuetify-jsonschema-form/develop/ nuxt generate)",
@@ -23,8 +24,9 @@
       "vue"
     ],
     "transform": {
-      ".*\\.(vue)$": "vue-jest",
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+      "^.+\\.vue$": "@vue/vue3-jest",
+      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2|mp3)$": "jest-transform-stub",
+      "^.+\\.m?[j|t]sx?$": "babel-jest"
     },
     "collectCoverage": true,
     "collectCoverageFrom": [
@@ -33,7 +35,10 @@
     "snapshotSerializers": [
       "jest-serializer-vue"
     ],
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!vuetify)"
+    ]
   },
   "repository": {
     "type": "git",
@@ -46,7 +51,6 @@
   },
   "homepage": "https://github.com/koumoul-dev/vuetify-jsonschema-form#readme",
   "dependencies": {
-    "@vue/compiler-sfc": "^3.3.4",
     "babel-core": "^7.0.0-0",
     "debounce": "^1.2.1",
     "debounce-promise": "^3.1.2",
@@ -55,8 +59,7 @@
     "fast-equals": "^2.0.4",
     "match-all": "^1.2.6",
     "vue": "^3.2.36",
-    "vue-template-compiler": "^2.7.14",
-    "vuetify": "^3.3.22"
+    "vuetify": "^3.4.3"
   },
   "optionalDependencies": {
     "@mdi/font": "^6.5.95",
@@ -80,7 +83,8 @@
     "@koumoul/gh-pages-multi": "^0.6.0",
     "@vue/babel-plugin-jsx": "^1.1.5",
     "@vue/compiler-sfc": "^3.3.4",
-    "@vue/test-utils": "^1.3.0",
+    "@vue/test-utils": "^2.4.1",
+    "@vue/vue3-jest": "27",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.4",
@@ -96,15 +100,17 @@
     "file-loader": "^6.2.0",
     "jest": "^27.5.1",
     "jest-serializer-vue": "^2.0.2",
+    "jest-transform-stub": "^2.0.0",
     "mini-css-extract-plugin": "^2.7.6",
     "random-words": "^1.1.2",
     "style-loader": "^3.3.3",
+    "url-loader": "^4.1.1",
     "v-mask": "^2.3.0",
     "vue-axios": "^2.1.5",
-    "vue-jest": "^3.0.7",
     "vue-loader": "^17.3.0",
-    "webpack": "^5.72.0",
+    "webpack": "^5.89.0",
     "webpack-bundle-analyzer": "^4.5.0",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
   }
 }

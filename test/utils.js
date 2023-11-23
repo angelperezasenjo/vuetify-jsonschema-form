@@ -1,20 +1,17 @@
-import Vue from 'vue'
-import Vuetify from 'vuetify'
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/lib/components/index.mjs'
+import * as directives from 'vuetify/lib/directives/index.mjs'
 import Draggable from 'vuedraggable'
-import { createLocalVue, mount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import VueMask from 'v-mask'
 import VJsf from '../lib/VJsfNoDeps.js'
 import ExampleForm from './example-form.vue'
 import { defaultTemplate } from '../doc/examples'
-
-Vue.use(Vuetify)
-const localVue = createLocalVue()
-localVue.component('VJsf', VJsf)
-localVue.component('Draggable', Draggable)
-Vue.use(VueMask)
+// Vue.use(VueMask)
 
 exports.getExampleWrapper = (example) => {
-  const vuetify = new Vuetify({ mocks: { $vuetify: { theme: { themes: {} } } } })
+  console.log('example', example)
+  const vuetify = createVuetify({ components, directives })
 
   // localVue.use(Vuetify)
 
@@ -22,10 +19,10 @@ exports.getExampleWrapper = (example) => {
   // Vue.options.components.VForm.$options.components = Vue.options.components
   // const wrapper = mount(localVue.options.components.VForm, {
   const template = (example.template || defaultTemplate)
-    .replace('"model"', '"props.modelWrapper.model"')
+  /* .replace('"model"', '"props.modelWrapper.model"')
     .replace('"schema"', '"props.schema"')
     .replace('"options"', '"props.options"')
-    .replace(/logEvent/g, 'props.logEvent')
+    .replace(/logEvent/g, 'props.logEvent') */
 
   if (template.includes('slot-scope')) {
     // TODO: investigate
@@ -58,21 +55,29 @@ exports.getExampleWrapper = (example) => {
 
   const events = []
 
+  console.log('template', template)
   const wrapper = mount(ExampleForm, {
-    localVue,
-    vuetify,
-    slots: {
-      default: template
+    global: {
+      provide: {
+        theme: {}
+      },
+      plugins: [vuetify],
+      components: {
+        VJsf,
+        Draggable,
+        VueMask
+      }
     },
-    propsData: {
+    slots: {
+      scoped: template
+    },
+    props: {
       modelWrapper,
       schema: example.schema,
       options,
       logEvent: (key, event) => events.push({ key, event })
-    },
-    provide: {
-      theme: {}
     }
+
   })
 
   return { wrapper, modelWrapper, events }
