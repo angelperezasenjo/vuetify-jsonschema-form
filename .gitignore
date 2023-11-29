@@ -3,4 +3,3 @@ node_modules
 /doc/dist
 /doc/.nuxt
 .idea/
-dist
