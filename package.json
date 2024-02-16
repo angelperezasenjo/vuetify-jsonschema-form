@@ -7,8 +7,6 @@
     "lint": "eslint --ext js .",
     "lint-fix": "eslint --fix --ext js .",
     "build": "rm -rf dist && webpack && cp lib/VJsf.css dist/main.css",
-    "prepare": "npm run lint && npm test && npm run build && npm run doc-build",
-    "postpublish": "gh-pages-multi deploy -v -s doc/dist -t latest",
     "test": "jest",
     "clear-cache": "jest tests/unit --clearCache",
     "test-watch": "jest --watch",
