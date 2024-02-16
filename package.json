@@ -1,5 +1,5 @@
 {
-  "name": "@amplia/vjsf",
+  "name": "vjsf",
   "version": "3.1.2",
   "description": "Generate forms for the vuetify UI library (vuejs) based on annotated JSON schemas.",
   "main": "dist/main.js",
