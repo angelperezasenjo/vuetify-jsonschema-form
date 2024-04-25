@@ -1,14 +1,14 @@
 {
-  "name": "@amplia/vjsf",
-  "version": "0.1.0",
+  "name": "opengate-vjsf",
+  "version": "3.3.1",
   "description": "Generate forms for the vuetify UI library (vuejs) based on annotated JSON schemas.",
   "main": "dist/main.js",
+  "private": false,
   "scripts": {
     "lint": "eslint --ext js .",
     "lint-fix": "eslint --fix --ext js .",
     "build": "rm -rf dist && webpack && cp lib/VJsf.css dist/main.css",
-    "prepare": "npm run lint && npm test && npm run build && npm run doc-build",
-    "postpublish": "gh-pages-multi deploy -v -s doc/dist -t latest",
+    "prepare": "npm config set access public",
     "test": "jest",
     "clear-cache": "jest tests/unit --clearCache",
     "test-watch": "jest --watch",
@@ -42,14 +42,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Scarfpurple/vuetify-jsonschema-form.git"
+    "url": "git+https://github.com/amplia-iiot/vuetify-jsonschema-form.git"
   },
-  "author": "Angel Perez <scarfpurple97@gmail.com>",
+  "author": "amplía))) IIoT <nfo@amplia.es>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/koumoul-dev/vuetify-jsonschema-form/issues"
+    "url": "https://github.com/amplia-iiot/vuetify-jsonschema-form/issues"
   },
-  "homepage": "https://github.com/koumoul-dev/vuetify-jsonschema-form#readme",
+  "homepage": "https://github.com/amplia-iiot/vuetify-jsonschema-form#readme",
   "dependencies": {
     "babel-core": "^7.0.0-0",
     "debounce": "^1.2.1",
